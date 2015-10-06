@@ -9,13 +9,17 @@ public class UIController : MonoBehaviour {
 	Vector3 origionPos;
 	private Renderer rend;
 	public GameObject ga ;
+	public Rigidbody rb;
 	void Start() {
 		origionPos = transform.position;
 		rend = ga.GetComponent<Renderer> ();
 		rend.enabled = true;
+		rb = GetComponent<Rigidbody>();
 	}
 	void OnTriggerEnter(Collider other) {
 		isMove = false;
+		rb.AddForce(0, 0, 0);
+		Debug.Log ("i am sphere, ");
 	}
 	
 	// Update is called once per frame
@@ -45,7 +49,8 @@ public class UIController : MonoBehaviour {
 
 		if ( GUI.Button(new Rect(165, 15, 60, 30), "Play") ) 
 		{
-			isMove = true;
+			//isMove = true;
+			rb.AddForce(0, -80, 0);
 
 		}
 
