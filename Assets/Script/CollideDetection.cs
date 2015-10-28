@@ -9,13 +9,12 @@ public class CollideDetection : MonoBehaviour {
 	private RaycastHit hit ;
 	private Renderer rend;
 	
-	private string SessionID = "";
-	
 	// Use this for initialization
 	void Awake () {
 		character = transform;
 		hit = new RaycastHit ();
 	}
+
 	void Start () {
 		rend = GetComponent<Renderer> ();
 		rend.enabled = true;
@@ -25,6 +24,7 @@ public class CollideDetection : MonoBehaviour {
 	void Update () {
 	
 	}
+
 	public bool CanSeeObject () {
 		Vector3 objDirection  = (obj.position - character.position);
 		
@@ -35,7 +35,7 @@ public class CollideDetection : MonoBehaviour {
 		return false;
 	}
 	
-	public void OnTriggerEnter (Collider other) {
+	public void OnCollisionEnter(Collision other) {
 		if ( other.transform == obj && CanSeeObject() ) {
 			// do something;
 

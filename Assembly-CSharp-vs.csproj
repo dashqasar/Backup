@@ -46,8 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Prefab\bulletprefab.cs" />
      <Compile Include="Assets\Script\CollideDetection.cs" />
      <Compile Include="Assets\Script\CubeController.cs" />
+     <Compile Include="Assets\Script\GunController.cs" />
+     <Compile Include="Assets\Script\MagneticRepulsion.cs" />
+     <Compile Include="Assets\Script\MouseLook.cs" />
      <Compile Include="Assets\Script\UIController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

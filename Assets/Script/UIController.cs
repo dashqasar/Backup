@@ -4,32 +4,34 @@ using System.Collections;
 public class UIController : MonoBehaviour {
 
 	// Use this for initialization
-	public Collider coll;
-	private bool isMove = false;
+
 	Vector3 origionPos;
-	private Renderer rend;
+	private Renderer CubeRenderer;
+	private Renderer sphereRenderer; 
 	public GameObject ga ;
-	public Rigidbody rb;
+	public Rigidbody SphereRb;
+	public Color[] ColorSel;
 	void Start() {
 		origionPos = transform.position;
-		rend = ga.GetComponent<Renderer> ();
-		rend.enabled = true;
-		rb = GetComponent<Rigidbody>();
+		CubeRenderer = ga.GetComponent<Renderer> ();
+		CubeRenderer.enabled = true;
+		SphereRb = GetComponent<Rigidbody>();
+		sphereRenderer = GetComponent<Renderer>();
 	}
-	void OnTriggerEnter(Collider other) {
-		isMove = false;
-		rb.AddForce(0, 0, 0);
+	void OnCollisionEnter(Collision collision) { 
+		SetColor ();
+		//SphereRb.AddForce(0, 0, 0);
 		Debug.Log ("i am sphere, ");
+
+	}
+	void SetColor(){
+		int i = Random.Range(1,10);
+		sphereRenderer.material.color = ColorSel[i];
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (isMove == true) {
-			Vector3 pos = new Vector3(transform.position.x, transform.position.y - Time.deltaTime * 2, transform.position.z);
-			transform.position = pos;
 
-		}
-	
 	}
 	void OnGUI()
 	{
@@ -41,16 +43,16 @@ public class UIController : MonoBehaviour {
 
 		if ( GUI.Button(new Rect (15, 15, 60, 30), "Rest") ) 
 		{
-			isMove = false;
 			transform.position = origionPos;
-			rend.material.color = Color.white;
+			CubeRenderer.material.color = Color.white;
+			SphereRb.useGravity = false;
 
 		}
 
 		if ( GUI.Button(new Rect(165, 15, 60, 30), "Play") ) 
 		{
 			//isMove = true;
-			rb.AddForce(0, -80, 0);
+			SphereRb.useGravity = true;
 
 		}
 
